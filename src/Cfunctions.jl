@@ -10,7 +10,7 @@ for field in [:Cmin, :CFB]
       return $fin(Cx, Fx, Gx)
     end
   end
-  @eval export $field
+  @eval export $field, $fin
 end
 
 function Cmin!(Cx, Fx, Gx)
