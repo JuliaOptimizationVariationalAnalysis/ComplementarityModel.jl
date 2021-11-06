@@ -20,5 +20,5 @@ makedocs(;
 
 deploydocs(;
     repo="github.com/tmigot/ComplementarityModel.jl",
-    devbranch="master",
+    devbranch="main",
 )
