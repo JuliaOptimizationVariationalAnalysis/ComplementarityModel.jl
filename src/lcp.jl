@@ -23,13 +23,6 @@ function F!(Fx, lcp::LinearComplementarityProblem, x)
   return Fx
 end
 
-#=
-function F!(Fx, lcp::LinearComplementarityProblem{T, S}, x) where {T, S <: LinearOperator}
-  Fx .= lcp.M * x .+ lcp.q
-  return Fx
-end
-=#
-
 function JF(lcp::LinearComplementarityProblem, x)
   JFx = similar(lcp.M)
   return JF!(JFx, lcp, x)
