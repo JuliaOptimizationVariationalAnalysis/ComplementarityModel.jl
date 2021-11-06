@@ -12,6 +12,8 @@ struct LinearComplementarityProblem{T, S} <: AbstractComplementarityModel
   end
 end
 
+Base.eltype(::LinearComplementarityProblem{T, S}) where {S, T} = T
+
 function F(lcp::LinearComplementarityProblem, x)
   Fx = similar(lcp.q)
   return F!(Fx, lcp, x)
