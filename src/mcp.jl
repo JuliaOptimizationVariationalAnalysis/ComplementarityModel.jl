@@ -13,3 +13,5 @@ struct MixedComplementarityProblem{T} <: AbstractComplementarityModel
     return new{T}(n, F, Fx, G, Gx)
   end
 end
+
+Base.eltype(::MixedComplementarityProblem{T}) where {T} = T

@@ -33,6 +33,20 @@ end
   end
 end
 
+@testset "LP to LCP" begin
+  T = Float64
+  A = T[1 -1 0; 0 0 1]
+  c = T[1; 1; 1]
+  b = T[0; 1]
+  lcp = LP_to_LCP(c, A, b)
+  @test lcp.M == -lcp.M'
+  @test eltype(lcp) == T
+  lcp = LP_to_feasible_LCP(c, A, b)
+  @test lcp.M == -lcp.M'
+  @test eltype(lcp) == T
+  @test all(lcp.M * ones(T, 7) + lcp.q .== 1)
+end
+
 @testset "LinearComplementarityProblem" begin
   T = Float64
   M = T[ 0 1 ; 1 0]

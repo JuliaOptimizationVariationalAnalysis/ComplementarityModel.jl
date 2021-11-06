@@ -11,3 +11,5 @@ struct NonLinearComplementarityProblem{T} <: AbstractComplementarityModel
     return new{T}(n, F, Fx)
   end
 end
+
+Base.eltype(::NonLinearComplementarityProblem{T}) where {T} = T
