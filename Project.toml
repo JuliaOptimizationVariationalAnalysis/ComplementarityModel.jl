@@ -3,6 +3,10 @@ uuid = "22add708-2750-4c94-b3aa-7639f42c83c1"
 authors = ["Tangi Migot tangi.migot@gmail.com"]
 version = "0.1.0"
 
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+LinearOperators = "5c8ed15e-5a4c-59e4-a42b-c7e8811fb125"
+
 [compat]
 julia = "1"
 
