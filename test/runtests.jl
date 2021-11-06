@@ -65,3 +65,15 @@ end
     @test (@allocated JGv!(w, lcp, x, v)) == 0
   end
 end
+
+@testset "NonLinearComplementarityProblem" begin
+  T = Float64
+  F(x) = ones(T, 2)
+  ncp = NonLinearComplementarityProblem(2, F, zeros(T, 2))
+end
+
+@testset "MixedComplementarityProblem" begin
+  T = Float64
+  F(x) = ones(T, 2)
+  mcp = MixedComplementarityProblem(2, F, zeros(T, 2), F, zeros(T, 2))
+end

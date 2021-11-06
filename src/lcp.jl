@@ -3,7 +3,7 @@ Structure to handle the linear complementarity problem in standard form:
 
    0 ≤ Mx + q _|_ x ≥ 0
 """
-mutable struct LinearComplementarityProblem{T, S} <: AbstractComplementarityModel
+struct LinearComplementarityProblem{T, S} <: AbstractComplementarityModel
   n # dimension of the problem
   M::S # matrix, sparsematrix or operator of size (n, n)
   q::AbstractVector{T} # vector of size n
