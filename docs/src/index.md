@@ -4,7 +4,7 @@ CurrentModule = ComplementarityModel
 
 # ComplementarityModel
 
-Documentation for [ComplementarityModel](https://github.com/tmigot/ComplementarityModel.jl).
+Documentation for [ComplementarityModel](https://github.com/JuliaOptimizationVariationalAnalysis/ComplementarityModel.jl).
 
 ```@index
 ```
