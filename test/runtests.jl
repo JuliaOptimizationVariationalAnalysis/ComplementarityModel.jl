@@ -5,7 +5,7 @@ using LinearAlgebra, SparseArrays, LinearOperators
 Random.seed!(1234)
 
 @testset "ComplementarityModel.jl" begin
-    # Write your tests here.
+  # Write your tests here.
 end
 
 @testset "C-functions" begin
@@ -17,7 +17,7 @@ end
     Cx = similar(Fx)
     eval(fin)(Cx, Fx, Gx)
     @test (@allocated eval(fin)(Cx, Fx, Gx)) ≤ 32 # It is 32 for CFBf
-    JFx, JGx = rand(T,n,n), rand(T,n,n)
+    JFx, JGx = rand(T, n, n), rand(T, n, n)
     Cx = similar(JFx)
     Jfin = Symbol("J", field, "!")
     eval(Jfin)(Cx, Fx, Gx, JFx, JGx)
@@ -49,12 +49,8 @@ end
 
 @testset "LinearComplementarityProblem" begin
   T = Float64
-  M = T[ 0 1 ; 1 0]
-  Mlist = (
-    M,
-    sparse(M),
-    LinearOperator(M),
-  )
+  M = T[0 1; 1 0]
+  Mlist = (M, sparse(M), LinearOperator(M))
   q = rand(T, 2)
   for M in Mlist
     lcp = LinearComplementarityProblem(2, M, q)

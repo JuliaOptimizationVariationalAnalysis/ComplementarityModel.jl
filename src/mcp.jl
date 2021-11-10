@@ -9,7 +9,13 @@ struct MixedComplementarityProblem{T} <: AbstractComplementarityModel
   Fx::AbstractVector{T}
   G::Function
   Gx::AbstractVector{T}
-  function MixedComplementarityProblem(n, F, Fx::AbstractVector{T}, G, Gx::AbstractVector{T}) where T
+  function MixedComplementarityProblem(
+    n,
+    F,
+    Fx::AbstractVector{T},
+    G,
+    Gx::AbstractVector{T},
+  ) where {T}
     return new{T}(n, F, Fx, G, Gx)
   end
 end

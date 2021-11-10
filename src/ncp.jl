@@ -7,7 +7,7 @@ struct NonLinearComplementarityProblem{T} <: AbstractComplementarityModel
   n # dimension of the problem
   F::Function
   Fx::AbstractVector{T}
-  function NonLinearComplementarityProblem(n, F, Fx::AbstractVector{T}) where T
+  function NonLinearComplementarityProblem(n, F, Fx::AbstractVector{T}) where {T}
     return new{T}(n, F, Fx)
   end
 end
