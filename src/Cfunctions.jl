@@ -43,28 +43,30 @@ function Cmin!(Cx, Fx, Gx)
 end
 
 function JCmin!(Cx, Fx, Gx, JFx, JGx)
-  for i=1:size(Cx, 1)
+  for i = 1:size(Cx, 1)
     @views Cx[i, :] .= Fx[i] ≤ Gx[i] ? JFx[i, :] : JGx[i, :]
   end
   return Cx
 end
 
 function JCminv!(w, Fx, Gx, JFx, JGx, v)
-  for i=1:length(w)
+  for i = 1:length(w)
     w[i] = Fx[i] ≤ Gx[i] ? dot(view(JFx, i, :), v) : dot(view(JGx, i, :), v)
   end
   return w
 end
 
 function CFB!(Cx, Fx, Gx) # Fischer-Burmeister C-function
-  @. Cx = Fx + Gx - sqrt(Fx^2 + Gx^2) 
+  @. Cx = Fx + Gx - sqrt(Fx^2 + Gx^2)
   return Cx
 end
 
 function JCFB!(Cx, Fx, Gx, JFx, JGx)
-  for i=1:size(Cx, 1)
-    if (Fx[i].^2 .+ Gx[i].^2) == 0
-      view(Cx, i, :) .= view(JFx, i, :) .+ view(JGx, i, :) .- (view(JFx, i, :) .* Fx[i] + view(JGx, i, :) .* Gx[i]) ./ sqrt(Fx[i].^2 .+ Gx[i].^2)
+  for i = 1:size(Cx, 1)
+    if (Fx[i] .^ 2 .+ Gx[i] .^ 2) == 0
+      view(Cx, i, :) .=
+        view(JFx, i, :) .+ view(JGx, i, :) .-
+        (view(JFx, i, :) .* Fx[i] + view(JGx, i, :) .* Gx[i]) ./ sqrt(Fx[i] .^ 2 .+ Gx[i] .^ 2)
     else
       view(Cx, i, :) .= view(JFx, i, :) .+ view(JGx, i, :) # the jacobian when F=G=0 is not correct
     end
@@ -73,11 +75,14 @@ function JCFB!(Cx, Fx, Gx, JFx, JGx)
 end
 
 function JCFBv!(w, Fx, Gx, JFx, JGx, v)
-  for i=1:length(w)
-    if (Fx[i].^2 .+ Gx[i].^2) == 0
-        w[i] = dot(view(JFx, i, :), v) + dot(view(JGx, i, :), v) - (dot(view(JFx, i, :), v) * Fx[i] + dot(view(JGx, i, :), v) * Gx[i]) / sqrt(Fx[i]^2 .+ Gx[i]^2)
+  for i = 1:length(w)
+    if (Fx[i] .^ 2 .+ Gx[i] .^ 2) == 0
+      w[i] =
+        dot(view(JFx, i, :), v) + dot(view(JGx, i, :), v) -
+        (dot(view(JFx, i, :), v) * Fx[i] + dot(view(JGx, i, :), v) * Gx[i]) /
+        sqrt(Fx[i]^2 .+ Gx[i]^2)
     else
-        w[i] = dot(view(JFx, i, :), v) + dot(view(JGx, i, :), v) # the jacobian when F=G=0 is not correct
+      w[i] = dot(view(JFx, i, :), v) + dot(view(JGx, i, :), v) # the jacobian when F=G=0 is not correct
     end
   end
   return w

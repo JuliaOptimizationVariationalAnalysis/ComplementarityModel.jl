@@ -7,7 +7,7 @@ struct LinearComplementarityProblem{T, S} <: AbstractComplementarityModel
   n # dimension of the problem
   M::S # matrix, sparsematrix or operator of size (n, n)
   q::AbstractVector{T} # vector of size n
-  function LinearComplementarityProblem(n, M, q::AbstractVector{T}) where T
+  function LinearComplementarityProblem(n, M, q::AbstractVector{T}) where {T}
     return new{T, typeof(M)}(n, M, q)
   end
 end
